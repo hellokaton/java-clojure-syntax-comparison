@@ -133,7 +133,9 @@ Comparison of some code snippets in the Java and Clojure.
 
 ## Basic
 
-### hello-world
+### Hello World
+
+Print `hello world` is the first thing in programming languages 😋
 
 ```java
 System.out.print("Hello World\n");
@@ -171,13 +173,17 @@ System.out.println("Hello World");
 
 ```java
 String name = "biezhi";
-int age = 2333;
+int age     = 2333;
 ```
+
+In fact, variables cannot be defined in `clojure`. These values ​​are immutable, like in Java `final`.
 
 ```clojure
 (def name "biezhi")
-(def age 2333)
+(def age  2333)
 ```
+
+`def` can be creates and interns or locates a global var with the name of symbol.
 
 ### create list
 
@@ -190,11 +196,21 @@ list.add("c");
 List<String> list = Arrays.asList("a", "b", "c");
 ```
 
-```clojure
-(list "a" "b" "c")
+A list uses parentheses as its surrounding delimiters, and so an empty list would look like `()`, whereas a list with three elements could look like `("a" "b" "c")`.
 
-'("a" "b" "c")
+```clojure
+(def my-list (list "a" "b" "c"))
+
+;; There is a special function called quote that tells Clojure to just treat the
+;; list as data.
+(def my-list (quote ("a" "b" "c")))
+
+;; This syntax is actually more code to type than (list "a" "b" "c"),
+;; so there is a shortcut for the quote function using the ' character
+(def my-list '("a" "b" "c"))
 ```
+
+One unique thing about lists is that the first element is always evaluated as a function call, with the remaining elements as arguments. So, defining a list just using `()` will cause an error.
 
 ### add item to list
 
@@ -206,13 +222,13 @@ list.addAll(newList);
 
 ```clojure
 ;; returns a new collection with the xs 'added'
-(conj (list "a" "b" "c") "d")
+(conj my-list "d")
 ;;=> ("d" "a" "b" "c")
 
-(cons "d" (list "a" "b" "c"))
+(cons "d" my-list)
 ;;=> ("d" "a" "b" "c")
 
-(concat '("a" "b" "c") '("d" "e" "f"))
+(concat my-list '("d" "e" "f"))
 ;;=> ("a" "b" "c" "d" "e" "f")
 ```
 
@@ -224,13 +240,16 @@ String a = list.get(0);
 
 ```clojure
 ;; get first by list
-(first (list "a" "b" "c"))
+(first my-list)
+;;=> a
 
 ;; get first by list
-(second (list "a" "b" "c"))
+(second my-list)
+;;=> b
 
 ;; get item by index
-(nth (list "a" "b" "c") 1)
+(nth my-list 1)
+;;=> b
 ```
 
 ### get list count
