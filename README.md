@@ -19,6 +19,22 @@ Comparison of some code snippets in the Java and Clojure.
 * [`list`](#list)
 * [`array`](#array)
 * [`map`](#map)
+* [`struct`](#struct)
+
+</details>
+
+### Flow Control
+
+<details>
+<summary>View contents</summary>
+
+* [`if-else`](#if-else)
+* [`switch`](#switch)
+* [`not`](#not)
+* [`and`](#and)
+* [`or`](#or)
+* [`for`](#for)
+* [`while`](#while)
 
 </details>
 
@@ -39,11 +55,42 @@ Comparison of some code snippets in the Java and Clojure.
 <details>
 <summary>View contents</summary>
 
-* [`hello-world`](#hello-world)
+* [`read-file-as-string`](#read-file-as-string)
 * [`comment`](#comment)
 
 </details>
 
+### Exception
+
+<details>
+<summary>View contents</summary>
+
+* [`throw-exception`](#throw-exception)
+* [`try-catch`](#try-catch)
+
+</details>
+
+### Thread
+
+<details>
+<summary>View contents</summary>
+
+* [`create-thread`](#create-thread)
+* [`future`](#future)
+
+</details>
+
+### Examples
+
+<details>
+<summary>View contents</summary>
+
+* [`plus-operation`](#plus-operation)
+* [`comment`](#comment)
+
+</details>
+
+---
 
 ## Basic
 
@@ -122,12 +169,30 @@ list.add("b");
 list.add("c");
 
 List<String> list = Arrays.asList("a", "b", "c");
+
+String item = list.get(1);
 ```
 
 ```clojure
 (list "a" "b" "c")
 
 '("a" "b" "c")
+
+;; returns a new collection with the xs 'added'
+(conj (list "a" "b" "c") "d")
+;;=> ("d" "a" "b" "c")
+
+(cons "d" (list "a" "b" "c"))
+;;=> ("d" "a" "b" "c")
+
+;; get first by list
+(first (list "a" "b" "c"))
+
+;; get first by list
+(second (list "a" "b" "c"))
+
+;; get item by index
+(nth (list "a" "b" "c") 1)
 ```
 
 ### map
@@ -137,12 +202,22 @@ Map<String, Integer> map = new HashMap<>();
 map.put("name", "biezhi");
 map.put("age", 2333);
 map.put("url", "https://github.com/biezhi");
+
+String name = map.get("name");
 ```
 
 ```clojure
 (def map {:name "biezhi",
           :age   2333
           :url   "https://github.com/biezhi"})
+
+;; get item by keyword
+(:name map)
+;; => "biezhi"
+
+;; get by "get" function
+(get map :name)
+;; => "biezhi"
 ```
 
 # License
