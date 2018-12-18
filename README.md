@@ -151,7 +151,7 @@ System.out.println("Hello World");
 ;; => Hello World
 ```
 
-### comment
+### Comment
 
 ```java
 // This is a one-line comment
@@ -169,7 +169,7 @@ System.out.println("Hello World");
 ")
 ```
 
-### variable
+### Variable
 
 ```java
 String name = "biezhi";
@@ -185,7 +185,7 @@ In fact, variables cannot be defined in `clojure`. These values ​​are immuta
 
 `def` can be creates and interns or locates a global var with the name of symbol.
 
-### create list
+### Create List
 
 ```java
 List<String> list = new ArrayList<>();
@@ -212,7 +212,7 @@ A list uses parentheses as its surrounding delimiters, and so an empty list woul
 
 One unique thing about lists is that the first element is always evaluated as a function call, with the remaining elements as arguments. So, defining a list just using `()` will cause an error.
 
-### add item to list
+### Add item to List
 
 ```java
 list.add("d");
@@ -232,7 +232,7 @@ list.addAll(newList);
 ;;=> ("a" "b" "c" "d" "e" "f")
 ```
 
-### get list item
+### Get List item
 
 ```java
 String a = list.get(0);
@@ -252,7 +252,7 @@ String a = list.get(0);
 ;;=> b
 ```
 
-### get list count
+### Get List count
 
 ```java
 int size = list.size();
@@ -265,7 +265,7 @@ int size = list.size();
 
 ---
 
-### create array
+### Create Array
 
 ```java
 String[] fruits = new String[3];
@@ -277,10 +277,19 @@ String[] fruits = {"peach", "pear", "apple"};
 ```
 
 ```clojure
+;; Vector []
+;; A vector looks like an array and is better for random access.
+;; A vector has an index to look up elements at a specific point, speeding up random access
+;; Vectors and maps are the most common data structures use to hold data in Clojure
+
+;; you can use the vector function to create a new vector
+(def fruits (vector "peach", "pear", "apple"))
+
+;; Usually you just use the [] notation to create a vector to help keep your code readable
 (def fruits ["peach", "pear", "apple"])
 ```
 
-### get array item
+### Get Array item
 
 ```java
 String pear = fruits[1];
@@ -294,7 +303,7 @@ String pear = fruits[1];
 ;; => "pear"
 ```
 
-### get array count
+### Get Array count
 
 ```java
 int length = fruits.length;
@@ -305,7 +314,7 @@ int length = fruits.length;
 ;;=> 3
 ```
 
-### two dimensional array
+### Two dimensional array
 
 ```java
 int[][] points = {
@@ -328,7 +337,7 @@ int[] idx = points[0];
 
 ---
 
-### create map
+### Create Map
 
 ```java
 Map<String, Integer> me = new HashMap<>();
@@ -337,28 +346,35 @@ me.put("age", 2333);
 ```
 
 ```clojure
+;; Map {}
+;; A key / value pair data structure
+;; keys are usually defined as a :keyword, although they can be anything
+
+;; Typicall a :keyword is used for a the key in a map, with the value being
+;; a string, number or another keyword
 (def me {:name "biezhi",
-          :age   2333
-          :url   "https://github.com/biezhi"})
+         :age   2333
+         :url   "https://github.com/biezhi"})
 ```
 
-### get map item
+### Get Map item
 
 ```java
 String url = me.get("url");
 ```
 
 ```clojure
-;; get item by keyword
 (:name me)
-;; => "biezhi"
+;;=> "biezhi"
 
-;; get by "get" function
 (get me :name)
-;; => "biezhi"
+;;=> "biezhi"
+
+(me :name)
+;;=> "biezhi"
 ```
 
-### define function
+### Define function
 
 ```java
 void sayHello() {
@@ -374,7 +390,7 @@ void sayHello() {
 ;; => hello
 ```
 
-### function with parameters
+### Function with parameters
 
 ```java
 void sayHello(String name) {
@@ -390,7 +406,7 @@ void sayHello(String name) {
 ;; => hello world
 ```
 
-### anonymous function
+### Anonymous function
 
 ```java
 Runnable r = () -> System.out.println("Hello Boy.");
@@ -411,7 +427,7 @@ r.run();
 (def hello-doc #(str "Hello " %1 %2))
 ```
 
-### with return value
+### With return value
 
 ```java
 String sayHello(String name) {
@@ -421,6 +437,115 @@ String sayHello(String name) {
 
 ```clojure
 (defn say-hello [name] (str "hello " name))
+```
+
+### If else
+
+```java
+int age = 23;
+if (age > 18) {
+    System.out.println("You have grown up, don't be like a child again.");
+} else {
+    System.out.println("Let's learn the cat call together, say 'miao miao miao'.");
+}
+```
+
+```clojure
+(def age 14)
+(if (> age 18)
+  (println "You have grown up, don't be like a child again.")
+  (println "Let's learn the cat call together, say 'miao miao miao'."))
+```
+
+### Switch
+
+```java
+int color = 3;
+switch(color) {
+    case 3:
+        return "red";
+    case 2:
+        return "blue";
+    case 1:
+        return "pink";
+    default:
+        return "#000";
+}
+```
+
+```clojure
+(case 3
+  3 "red"
+  2 "blue"
+  1 "pink"
+  "#000")
+```
+
+### Not
+
+```java
+int flag = 2333;
+
+if (flag != 100){
+    // do some thing
+}
+```
+
+```clojure
+(def flag 2333)
+(if (not (= 100 flag)) (println "not eq 2333"))
+;;=> not eq 2333
+```
+
+### And
+
+```java
+boolean success = (result.ok && result.code == 200);
+```
+
+```clojure
+(and (true? result.ok) (= 200 result.code))
+```
+
+### Or
+
+```java
+boolean success = (result.ok || result.code == 200);
+```
+
+```clojure
+(or (true? result.ok) (= 200 result.code))
+```
+
+### For
+
+```java
+for (int i=0; i<10; i++){
+    System.out.println("i = " + i);
+}
+```
+
+```clojure
+(doseq [i (range 10)] 
+  (println (str "i =" i)))
+
+(for [i (range 10)] 
+  (do (println (str "i =" i))))
+```
+
+### While
+
+```java
+int seq = 10;
+while (seq > 0) {
+    System.out.prinln("seq = " + (seq--));
+}
+```
+
+```clojure
+(def seq-num (atom 10))
+(while (> @seq-num 0)
+   (do (println (str "seq = " @seq-num)) (swap! seq-num dec) ))
 ```
 
 # License
