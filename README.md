@@ -85,9 +85,11 @@ Comparison of some code snippets in the Java and Clojure.
 <summary>View contents</summary>
 
 * [`toString`](#to-string)
-* [`replace`](#replace)
-* [`join`](#join)
-* [`split`](#split)
+* [`append`](#string-splice)
+* [`replace`](#string-replace)
+* [`join`](#string-join)
+* [`split`](#string-split)
+* [`substring`](#string-substring)
 
 </details>
 
@@ -479,6 +481,7 @@ switch(color) {
   2 "blue"
   1 "pink"
   "#000")
+;;=> "red"
 ```
 
 ### Not
@@ -546,6 +549,122 @@ while (seq > 0) {
 (def seq-num (atom 10))
 (while (> @seq-num 0)
    (do (println (str "seq = " @seq-num)) (swap! seq-num dec) ))
+```
+
+### to string
+
+```java
+Integer age = 2333;
+System.out.println(age.toString());
+```
+
+```clojure
+(str 2333)
+;;=> "2333"
+```
+
+### String append
+
+```java
+String a = "hello " + "world " + 2333;
+```
+
+```clojure
+(str "hello " "world " 2333)
+;;=> "hello world 2333"
+```
+
+### String replace
+
+```java
+String url = "https://biezhi.me";
+System.out.println("New url is: " + url.replace('.', '#');
+
+String str = "A good day to you, sir.  Good day.";
+System.out.println("New str is: " + url.replaceFirst("day", "night");
+
+String str = "This is a String to use as an example to present raplaceAll";
+System.out.println(str.replaceAll("This", "That"));
+```
+
+```clojure
+(clojure.string/replace "https://biezhi.me" #"\." "#")
+
+;; Only replace the first match.
+(clojure.string/replace-first "A good day to you, sir.  Good day." #"day" "night")
+;;=> "A good night to you, sir.  Good day."
+
+;; If there are no matches, return the original string.
+(clojure.string/replace-first "A good day to you, sir." #"madam" "master")
+;;=> "A good day to you, sir."
+
+;; To title case
+(clojure.string/replace "hello world" #"\b." #(.toUpperCase %1))
+;;=> "Hello World"
+
+;; replaces all a's with 1 and all b's with 2
+(clojure.string/replace "a b a" #"a|b" {"a" "1" "b" "2"})
+;=> "1 2 1"
+```
+
+### String join
+
+```java
+String.join(", ", "jack", "biezhi", "rose", "mark")
+```
+
+```clojure
+(clojure.string/join ", " ["jack", "biezhi", "rose", "mark"])
+;;=> "jack, biezhi, rose, mark"
+```
+
+### String split
+
+```java
+"jack, biezhi, rose, mark".split(", ");
+
+"h1e2l3l4o5w6o7r8d9d".split("\\d+");
+```
+
+```clojure
+(clojure.string/split "jack, biezhi, rose, mark" #", ")
+;;=> ["jack" "biezhi" "rose" "mark"]
+
+(clojure.string/split "h1e2l3l4o5w6o7r8d9d" #"\d+")
+;;=> ["h" "e" "l" "l" "o" "w" "o" "r" "d" "d"]
+
+;; Note that the 'limit' arg is the maximum number of strings to
+;; return (not the number of splits)
+(clojure.string/split "q1w2e3r4t5y6u7i8o9p0" #"\d+" 5)
+;;=> ["q" "w" "e" "r" "t5y6u7i8o9p0"]
+
+;; to get back all the characters of a string, as a vector of strings:
+(clojure.string/split " q1w2 " #"")
+;;=> [" " "q" "1" "w" "2" " "]
+
+;; Note: sequence, in contrast, would return characters.
+;; Using lookarounds (lookahead, lookbehind) one can keep the matching characters:
+(clojure.string/split " something and ACamelName " #"(?=[A-Z])")
+;;=> [" something and " "A" "Camel" "Name "]
+```
+
+### String substring
+
+```java
+"biezhi".substring(1);
+"biezhi".substring(0, 3);
+"biezhi".substring(0, 6);
+```
+
+```clojure
+(subs "biezhi" 1)
+;;=> "iezhi"
+
+(subs "biezhi" 0 3)
+;;=> "bie"
+
+(subs "biezhi" 0 6)
+;;=> "biezhi"
 ```
 
 # License
