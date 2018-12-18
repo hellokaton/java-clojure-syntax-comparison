@@ -164,11 +164,20 @@ System.out.println("Hello World");
 ```
 
 ```clojure
+; (semicolon) reader macro
 ; i don't know what I should do
 
+
+;; The syntax is like a function: (comment & body).
 (comment "
     Here are the comments
 ")
+
+;; This is used to comment out a form. 
+;; a corresponding pair of ( and ), or [ and ]. 
+;; The form can be nested.
+(def my-vec #_[1 2 3] [3 4 5])
+;; [1 2 3] was ignored
 ```
 
 ### Variable
