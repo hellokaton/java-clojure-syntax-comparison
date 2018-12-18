@@ -1,13 +1,16 @@
 # Java Clojure Syntax Comparison
 
-Comparison of some code snippets in the Java and Clojure.
+[![License](https://img.shields.io/badge/license-CC0--1.0-blue.svg)](https://github.com/biezhi/java-clojure-syntax-comparison/blob/master/LICENSE)  
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+
+> Comparison of some code snippets in the Java and Clojure.
 
 - Java Version: `1.8.0_101`
 - Clojure Version: `1.9`
 
-## Table of Contents
+## Contents
 
-### Basic
+### 📍 Basic
 
 <details>
 <summary>View contents</summary>
@@ -18,53 +21,53 @@ Comparison of some code snippets in the Java and Clojure.
 
 </details>
 
-### List
+### 📚 List
 
 <details>
 <summary>View contents</summary>
 
-* [`Create list`](#create-list)
+* [`Create List`](#create-list)
 * [`Add item`](#add-item-to-list)
 * [`Get item`](#get-list-item)
 * [`Get count`](#get-list-count)
 
 </details>
 
-### Array
+### 📚 Array
 
 <details>
 <summary>View contents</summary>
 
-* [`Create array`](#create-array)
+* [`Create Array`](#create-array)
 * [`Get item`](#get-array-item)
 * [`Get count`](#get-array-count)
 * [`Two-dimensional array`](#two-dimensional-array)
 
 </details>
 
-### Map
+### 🗺 Map
 
 <details>
 <summary>View contents</summary>
 
-* [`Create map`](#create-map)
+* [`Create Map`](#create-map)
 * [`Get item`](#get-map-item)
 
 </details>
 
-### Function
+### 🎛️ Function
 
 <details>
 <summary>View contents</summary>
 
-* [`Define function`](#define-function)
+* [`Define Function`](#define-function)
 * [`Function with parameters`](#function-with-parameters)
 * [`Anonymous function`](#anonymous-function)
 * [`With return value`](#with-return-value)
 
 </details>
 
-### Flow Control
+### ✈️ Flow Control
 
 <details>
 <summary>View contents</summary>
@@ -79,7 +82,7 @@ Comparison of some code snippets in the Java and Clojure.
 
 </details>
 
-### String
+### 📜 String
 
 <details>
 <summary>View contents</summary>
@@ -93,7 +96,25 @@ Comparison of some code snippets in the Java and Clojure.
 
 </details>
 
-### IO
+### ⏱️ Date
+
+<details>
+<summary>View contents</summary>
+
+* [`Now Time`](#now-time)
+
+</details>
+
+### ➗ Math
+
+<details>
+<summary>View contents</summary>
+
+* [`average`](#average)
+
+</details>
+
+### 🔭 IO
 
 <details>
 <summary>View contents</summary>
@@ -102,7 +123,7 @@ Comparison of some code snippets in the Java and Clojure.
 
 </details>
 
-### Exception
+### ❌ Exception
 
 <details>
 <summary>View contents</summary>
@@ -112,7 +133,7 @@ Comparison of some code snippets in the Java and Clojure.
 
 </details>
 
-### Thread
+### ❇️ Thread
 
 <details>
 <summary>View contents</summary>
@@ -122,18 +143,9 @@ Comparison of some code snippets in the Java and Clojure.
 
 </details>
 
-### Examples
-
-<details>
-<summary>View contents</summary>
-
-* [`Plus operation`](#plus-operation)
-
-</details>
-
 ---
 
-## Basic
+## 📍 Basic
 
 ### Hello World
 
@@ -153,6 +165,8 @@ System.out.println("Hello World");
 ;; => Hello World
 ```
 
+<br>[⬆ Back to top](#contents)
+
 ### Comment
 
 ```java
@@ -167,7 +181,6 @@ System.out.println("Hello World");
 ; (semicolon) reader macro
 ; i don't know what I should do
 
-
 ;; The syntax is like a function: (comment & body).
 (comment "
     Here are the comments
@@ -179,6 +192,8 @@ System.out.println("Hello World");
 (def my-vec #_[1 2 3] [3 4 5])
 ;; [1 2 3] was ignored
 ```
+
+<br>[⬆ Back to top](#contents)
 
 ### Variable
 
@@ -195,6 +210,29 @@ In fact, variables cannot be defined in `clojure`. These values ​​are immuta
 ```
 
 `def` can be creates and interns or locates a global var with the name of symbol.
+
+```clojure
+(def my-number 234)
+;;=> #'user/my-number
+;; what's that returned thing, "#'user/my-number" ?
+
+(type #'user/my-number)
+;;=> clojure.lang.Var
+; it is a Var. you just created the Var, at the same time, `my-number` has been bound to 234.
+
+my-number
+;;=> 234
+user/my-number
+;;=> 234
+```
+
+In other languages, a variable assignment looks like `var myvar = "something"`, `@myvar = "something"`, or `String myVar = "something"`.
+
+Clojure does things in a different way. First, Clojure doesn’t call it a variable assignment. It is a *var binding*, and this idea is a bit different from assignment in other languages.
+
+<br>[⬆ Back to top](#contents)
+
+## 📚 List
 
 ### Create List
 
@@ -223,6 +261,8 @@ A list uses parentheses as its surrounding delimiters, and so an empty list woul
 
 One unique thing about lists is that the first element is always evaluated as a function call, with the remaining elements as arguments. So, defining a list just using `()` will cause an error.
 
+<br>[⬆ Back to top](#contents)
+
 ### Add item to List
 
 ```java
@@ -242,6 +282,8 @@ list.addAll(newList);
 (concat my-list '("d" "e" "f"))
 ;;=> ("a" "b" "c" "d" "e" "f")
 ```
+
+<br>[⬆ Back to top](#contents)
 
 ### Get List item
 
@@ -263,6 +305,8 @@ String a = list.get(0);
 ;;=> b
 ```
 
+<br>[⬆ Back to top](#contents)
+
 ### Get List count
 
 ```java
@@ -274,7 +318,9 @@ int size = list.size();
 ;;=> 3
 ```
 
----
+<br>[⬆ Back to top](#contents)
+
+## 📚 Array
 
 ### Create Array
 
@@ -300,6 +346,8 @@ String[] fruits = {"peach", "pear", "apple"};
 (def fruits ["peach", "pear", "apple"])
 ```
 
+<br>[⬆ Back to top](#contents)
+
 ### Get Array item
 
 ```java
@@ -314,6 +362,8 @@ String pear = fruits[1];
 ;; => "pear"
 ```
 
+<br>[⬆ Back to top](#contents)
+
 ### Get Array count
 
 ```java
@@ -324,6 +374,8 @@ int length = fruits.length;
 (count fruits)
 ;;=> 3
 ```
+
+<br>[⬆ Back to top](#contents)
 
 ### Two dimensional array
 
@@ -346,7 +398,9 @@ int[] idx = points[0];
 ;;=> [42, 88]
 ```
 
----
+<br>[⬆ Back to top](#contents)
+
+## 🗺 Map
 
 ### Create Map
 
@@ -368,10 +422,12 @@ me.put("age", 2333);
          :url   "https://github.com/biezhi"})
 ```
 
+<br>[⬆ Back to top](#contents)
+
 ### Get Map item
 
 ```java
-String url = me.get("url");
+me.get("url");
 ```
 
 ```clojure
@@ -384,6 +440,10 @@ String url = me.get("url");
 (me :name)
 ;;=> "biezhi"
 ```
+
+<br>[⬆ Back to top](#contents)
+
+## 🎛️ Function
 
 ### Define function
 
@@ -401,6 +461,8 @@ void sayHello() {
 ;; => hello
 ```
 
+<br>[⬆ Back to top](#contents)
+
 ### Function with parameters
 
 ```java
@@ -417,26 +479,34 @@ void sayHello(String name) {
 ;; => hello world
 ```
 
+<br>[⬆ Back to top](#contents)
+
 ### Anonymous function
 
 ```java
-Runnable r = () -> System.out.println("Hello Boy.");
-r.run();
+Runnable task = () -> System.out.println("Hello Boy.");
+task.run();
 ```
 
 ```clojure
-;; the same but using an anonymous function
 (def say-hello
- #(str "hello " %))
+  (fn []
+    (str "hello world")))
 
 ;; assign a function to a variable
 (def say-hello
  (fn [name]
    (str "Hello " name)))
 
+;; the same but using an anonymous function
+(def say-hello
+ #(str "hello " %))
+
 ;; anonymous function using two arguments
 (def hello-doc #(str "Hello " %1 %2))
 ```
+
+<br>[⬆ Back to top](#contents)
 
 ### With return value
 
@@ -449,6 +519,10 @@ String sayHello(String name) {
 ```clojure
 (defn say-hello [name] (str "hello " name))
 ```
+
+<br>[⬆ Back to top](#contents)
+
+## ✈️ Flow Control
 
 ### If else
 
@@ -467,6 +541,8 @@ if (age > 18) {
   (println "You have grown up, don't be like a child again.")
   (println "Let's learn the cat call together, say 'miao miao miao'."))
 ```
+
+<br>[⬆ Back to top](#contents)
 
 ### Switch
 
@@ -493,6 +569,8 @@ switch(color) {
 ;;=> "red"
 ```
 
+<br>[⬆ Back to top](#contents)
+
 ### Not
 
 ```java
@@ -509,6 +587,8 @@ if (flag != 100){
 ;;=> not eq 2333
 ```
 
+<br>[⬆ Back to top](#contents)
+
 ### And
 
 ```java
@@ -519,6 +599,8 @@ boolean success = (result.ok && result.code == 200);
 (and (true? result.ok) (= 200 result.code))
 ```
 
+<br>[⬆ Back to top](#contents)
+
 ### Or
 
 ```java
@@ -528,6 +610,8 @@ boolean success = (result.ok || result.code == 200);
 ```clojure
 (or (true? result.ok) (= 200 result.code))
 ```
+
+<br>[⬆ Back to top](#contents)
 
 ### For
 
@@ -545,6 +629,8 @@ for (int i=0; i<10; i++){
   (do (println (str "i =" i))))
 ```
 
+<br>[⬆ Back to top](#contents)
+
 ### While
 
 ```java
@@ -560,6 +646,10 @@ while (seq > 0) {
    (do (println (str "seq = " @seq-num)) (swap! seq-num dec) ))
 ```
 
+<br>[⬆ Back to top](#contents)
+
+## 📜 String
+
 ### to string
 
 ```java
@@ -572,6 +662,8 @@ System.out.println(age.toString());
 ;;=> "2333"
 ```
 
+<br>[⬆ Back to top](#contents)
+
 ### String append
 
 ```java
@@ -582,6 +674,8 @@ String a = "hello " + "world " + 2333;
 (str "hello " "world " 2333)
 ;;=> "hello world 2333"
 ```
+
+<br>[⬆ Back to top](#contents)
 
 ### String replace
 
@@ -598,6 +692,9 @@ System.out.println(str.replaceAll("This", "That"));
 
 ```clojure
 (clojure.string/replace "https://biezhi.me" #"\." "#")
+
+;; replace with Java method
+(.replace "https://biezhi.me" "." "#")
 
 ;; Only replace the first match.
 (clojure.string/replace-first "A good day to you, sir.  Good day." #"day" "night")
@@ -616,6 +713,8 @@ System.out.println(str.replaceAll("This", "That"));
 ;=> "1 2 1"
 ```
 
+<br>[⬆ Back to top](#contents)
+
 ### String join
 
 ```java
@@ -626,6 +725,8 @@ String.join(", ", "jack", "biezhi", "rose", "mark")
 (clojure.string/join ", " ["jack", "biezhi", "rose", "mark"])
 ;;=> "jack, biezhi, rose, mark"
 ```
+
+<br>[⬆ Back to top](#contents)
 
 ### String split
 
@@ -657,6 +758,8 @@ String.join(", ", "jack", "biezhi", "rose", "mark")
 ;;=> [" something and " "A" "Camel" "Name "]
 ```
 
+<br>[⬆ Back to top](#contents)
+
 ### String substring
 
 ```java
@@ -676,6 +779,10 @@ String.join(", ", "jack", "biezhi", "rose", "mark")
 ;;=> "biezhi"
 ```
 
-# License
+<br>[⬆ Back to top](#contents)
 
-[MIT](LICENSE)
+# Clojure Links
+
+- [clojure-through-code](https://github.com/practicalli/clojure-through-code)
+- [clojure docs](https://clojuredocs.org/quickref)
+- [learn clojure](https://hackr.io/tutorials/learn-clojure)
