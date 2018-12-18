@@ -1,7 +1,6 @@
 # Java Clojure Syntax Comparison
 
-[![License](https://img.shields.io/badge/license-CC0--1.0-blue.svg)](https://github.com/biezhi/java-clojure-syntax-comparison/blob/master/LICENSE)  
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+[![License](https://img.shields.io/badge/license-CC0--1.0-blue.svg)](https://github.com/biezhi/java-clojure-syntax-comparison/blob/master/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
 > Comparison of some code snippets in the Java and Clojure.
 
@@ -157,6 +156,9 @@ System.out.print("Hello World\n");
 System.out.println("Hello World");
 ```
 
+<details>
+<summary>Clojure</summary>
+
 ```clojure
 (print "Hello World\n")
 ;; => Hello World
@@ -164,6 +166,8 @@ System.out.println("Hello World");
 (println "Hello World")
 ;; => Hello World
 ```
+
+</details>
 
 <br>[⬆ Back to top](#contents)
 
@@ -176,6 +180,9 @@ System.out.println("Hello World");
  * This is a multi-line comment
  */
 ```
+
+<details>
+<summary>Clojure</summary>
 
 ```clojure
 ; (semicolon) reader macro
@@ -193,6 +200,8 @@ System.out.println("Hello World");
 ;; [1 2 3] was ignored
 ```
 
+</details>
+
 <br>[⬆ Back to top](#contents)
 
 ### Variable
@@ -203,6 +212,9 @@ int age     = 2333;
 ```
 
 In fact, variables cannot be defined in `clojure`. These values ​​are immutable, like in Java `final`.
+
+<details>
+<summary>Clojure</summary>
 
 ```clojure
 (def name "biezhi")
@@ -226,6 +238,8 @@ user/my-number
 ;;=> 234
 ```
 
+</details>
+
 In other languages, a variable assignment looks like `var myvar = "something"`, `@myvar = "something"`, or `String myVar = "something"`.
 
 Clojure does things in a different way. First, Clojure doesn’t call it a variable assignment. It is a *var binding*, and this idea is a bit different from assignment in other languages.
@@ -247,6 +261,9 @@ List<String> list = Arrays.asList("a", "b", "c");
 
 A list uses parentheses as its surrounding delimiters, and so an empty list would look like `()`, whereas a list with three elements could look like `("a" "b" "c")`.
 
+<details>
+<summary>Clojure</summary>
+
 ```clojure
 (def my-list (list "a" "b" "c"))
 
@@ -258,6 +275,8 @@ A list uses parentheses as its surrounding delimiters, and so an empty list woul
 ;; so there is a shortcut for the quote function using the ' character
 (def my-list '("a" "b" "c"))
 ```
+
+</details>
 
 One unique thing about lists is that the first element is always evaluated as a function call, with the remaining elements as arguments. So, defining a list just using `()` will cause an error.
 
@@ -271,6 +290,9 @@ list.add("d");
 list.addAll(newList);
 ```
 
+<details>
+<summary>Clojure</summary>
+
 ```clojure
 ;; returns a new collection with the xs 'added'
 (conj my-list "d")
@@ -283,6 +305,8 @@ list.addAll(newList);
 ;;=> ("a" "b" "c" "d" "e" "f")
 ```
 
+</details>
+
 <br>[⬆ Back to top](#contents)
 
 ### Get List item
@@ -290,6 +314,9 @@ list.addAll(newList);
 ```java
 String a = list.get(0);
 ```
+
+<details>
+<summary>Clojure</summary>
 
 ```clojure
 ;; get first by list
@@ -305,6 +332,8 @@ String a = list.get(0);
 ;;=> b
 ```
 
+</details>
+
 <br>[⬆ Back to top](#contents)
 
 ### Get List count
@@ -313,10 +342,15 @@ String a = list.get(0);
 int size = list.size();
 ```
 
+<details>
+<summary>Clojure</summary>
+
 ```clojure
 (count '(1 2 3))
 ;;=> 3
 ```
+
+</details>
 
 <br>[⬆ Back to top](#contents)
 
@@ -333,6 +367,9 @@ fruits[2] = "apple";
 String[] fruits = {"peach", "pear", "apple"};
 ```
 
+<details>
+<summary>Clojure</summary>
+
 ```clojure
 ;; Vector []
 ;; A vector looks like an array and is better for random access.
@@ -346,6 +383,8 @@ String[] fruits = {"peach", "pear", "apple"};
 (def fruits ["peach", "pear", "apple"])
 ```
 
+</details>
+
 <br>[⬆ Back to top](#contents)
 
 ### Get Array item
@@ -353,6 +392,9 @@ String[] fruits = {"peach", "pear", "apple"};
 ```java
 String pear = fruits[1];
 ```
+
+<details>
+<summary>Clojure</summary>
 
 ```clojure
 (second fruits)
@@ -362,6 +404,8 @@ String pear = fruits[1];
 ;; => "pear"
 ```
 
+</details>
+
 <br>[⬆ Back to top](#contents)
 
 ### Get Array count
@@ -370,10 +414,15 @@ String pear = fruits[1];
 int length = fruits.length;
 ```
 
+<details>
+<summary>Clojure</summary>
+
 ```clojure
 (count fruits)
 ;;=> 3
 ```
+
+</details>
 
 <br>[⬆ Back to top](#contents)
 
@@ -388,6 +437,9 @@ int[][] points = {
 int[] idx = points[0];
 ```
 
+<details>
+<summary>Clojure</summary>
+
 ```clojure
 (def points [[23, 45] [42, 88]])
 
@@ -397,6 +449,8 @@ int[] idx = points[0];
 (nth points 1)
 ;;=> [42, 88]
 ```
+
+</details>
 
 <br>[⬆ Back to top](#contents)
 
@@ -410,6 +464,9 @@ me.put("name", "biezhi");
 me.put("age", 2333);
 ```
 
+<details>
+<summary>Clojure</summary>
+
 ```clojure
 ;; Map {}
 ;; A key / value pair data structure
@@ -422,6 +479,8 @@ me.put("age", 2333);
          :url   "https://github.com/biezhi"})
 ```
 
+</details>
+
 <br>[⬆ Back to top](#contents)
 
 ### Get Map item
@@ -429,6 +488,9 @@ me.put("age", 2333);
 ```java
 me.get("url");
 ```
+
+<details>
+<summary>Clojure</summary>
 
 ```clojure
 (:name me)
@@ -440,6 +502,8 @@ me.get("url");
 (me :name)
 ;;=> "biezhi"
 ```
+
+</details>
 
 <br>[⬆ Back to top](#contents)
 
@@ -453,6 +517,9 @@ void sayHello() {
 }
 ```
 
+<details>
+<summary>Clojure</summary>
+
 ```clojure
 ;; assign a function to a variable
 (defn say-hello [] (println "hello"))
@@ -460,6 +527,8 @@ void sayHello() {
 (say-hello)
 ;; => hello
 ```
+
+</details>
 
 <br>[⬆ Back to top](#contents)
 
@@ -471,6 +540,9 @@ void sayHello(String name) {
 }
 ```
 
+<details>
+<summary>Clojure</summary>
+
 ```clojure
 ;; define a function with parameters
 (defn say-hello [name] (println (str "hello " name)))
@@ -478,6 +550,8 @@ void sayHello(String name) {
 (say-hello "world")
 ;; => hello world
 ```
+
+</details>
 
 <br>[⬆ Back to top](#contents)
 
@@ -487,6 +561,9 @@ void sayHello(String name) {
 Runnable task = () -> System.out.println("Hello Boy.");
 task.run();
 ```
+
+<details>
+<summary>Clojure</summary>
 
 ```clojure
 (def say-hello
@@ -506,6 +583,8 @@ task.run();
 (def hello-doc #(str "Hello " %1 %2))
 ```
 
+</details>
+
 <br>[⬆ Back to top](#contents)
 
 ### With return value
@@ -516,9 +595,14 @@ String sayHello(String name) {
 }
 ```
 
+<details>
+<summary>Clojure</summary>
+
 ```clojure
 (defn say-hello [name] (str "hello " name))
 ```
+
+</details>
 
 <br>[⬆ Back to top](#contents)
 
@@ -535,12 +619,17 @@ if (age > 18) {
 }
 ```
 
+<details>
+<summary>Clojure</summary>
+
 ```clojure
 (def age 14)
 (if (> age 18)
   (println "You have grown up, don't be like a child again.")
   (println "Let's learn the cat call together, say 'miao miao miao'."))
 ```
+
+</details>
 
 <br>[⬆ Back to top](#contents)
 
@@ -560,6 +649,9 @@ switch(color) {
 }
 ```
 
+<details>
+<summary>Clojure</summary>
+
 ```clojure
 (case 3
   3 "red"
@@ -568,6 +660,8 @@ switch(color) {
   "#000")
 ;;=> "red"
 ```
+
+</details>
 
 <br>[⬆ Back to top](#contents)
 
@@ -581,11 +675,16 @@ if (flag != 100){
 }
 ```
 
+<details>
+<summary>Clojure</summary>
+
 ```clojure
 (def flag 2333)
 (if (not (= 100 flag)) (println "not eq 2333"))
 ;;=> not eq 2333
 ```
+
+</details>
 
 <br>[⬆ Back to top](#contents)
 
@@ -595,9 +694,14 @@ if (flag != 100){
 boolean success = (result.ok && result.code == 200);
 ```
 
+<details>
+<summary>Clojure</summary>
+
 ```clojure
 (and (true? result.ok) (= 200 result.code))
 ```
+
+</details>
 
 <br>[⬆ Back to top](#contents)
 
@@ -607,9 +711,14 @@ boolean success = (result.ok && result.code == 200);
 boolean success = (result.ok || result.code == 200);
 ```
 
+<details>
+<summary>Clojure</summary>
+
 ```clojure
 (or (true? result.ok) (= 200 result.code))
 ```
+
+</details>
 
 <br>[⬆ Back to top](#contents)
 
@@ -621,6 +730,9 @@ for (int i=0; i<10; i++){
 }
 ```
 
+<details>
+<summary>Clojure</summary>
+
 ```clojure
 (doseq [i (range 10)] 
   (println (str "i =" i)))
@@ -628,6 +740,8 @@ for (int i=0; i<10; i++){
 (for [i (range 10)] 
   (do (println (str "i =" i))))
 ```
+
+</details>
 
 <br>[⬆ Back to top](#contents)
 
@@ -640,11 +754,16 @@ while (seq > 0) {
 }
 ```
 
+<details>
+<summary>Clojure</summary>
+
 ```clojure
 (def seq-num (atom 10))
 (while (> @seq-num 0)
    (do (println (str "seq = " @seq-num)) (swap! seq-num dec) ))
 ```
+
+</details>
 
 <br>[⬆ Back to top](#contents)
 
@@ -657,10 +776,15 @@ Integer age = 2333;
 System.out.println(age.toString());
 ```
 
+<details>
+<summary>Clojure</summary>
+
 ```clojure
 (str 2333)
 ;;=> "2333"
 ```
+
+</details>
 
 <br>[⬆ Back to top](#contents)
 
@@ -670,10 +794,15 @@ System.out.println(age.toString());
 String a = "hello " + "world " + 2333;
 ```
 
+<details>
+<summary>Clojure</summary>
+
 ```clojure
 (str "hello " "world " 2333)
 ;;=> "hello world 2333"
 ```
+
+</details>
 
 <br>[⬆ Back to top](#contents)
 
@@ -689,6 +818,9 @@ System.out.println("New str is: " + url.replaceFirst("day", "night");
 String str = "This is a String to use as an example to present raplaceAll";
 System.out.println(str.replaceAll("This", "That"));
 ```
+
+<details>
+<summary>Clojure</summary>
 
 ```clojure
 (clojure.string/replace "https://biezhi.me" #"\." "#")
@@ -713,6 +845,8 @@ System.out.println(str.replaceAll("This", "That"));
 ;=> "1 2 1"
 ```
 
+</details>
+
 <br>[⬆ Back to top](#contents)
 
 ### String join
@@ -721,10 +855,15 @@ System.out.println(str.replaceAll("This", "That"));
 String.join(", ", "jack", "biezhi", "rose", "mark")
 ```
 
+<details>
+<summary>Clojure</summary>
+
 ```clojure
 (clojure.string/join ", " ["jack", "biezhi", "rose", "mark"])
 ;;=> "jack, biezhi, rose, mark"
 ```
+
+</details>
 
 <br>[⬆ Back to top](#contents)
 
@@ -735,6 +874,9 @@ String.join(", ", "jack", "biezhi", "rose", "mark")
 
 "h1e2l3l4o5w6o7r8d9d".split("\\d+");
 ```
+
+<details>
+<summary>Clojure</summary>
 
 ```clojure
 (clojure.string/split "jack, biezhi, rose, mark" #", ")
@@ -758,6 +900,8 @@ String.join(", ", "jack", "biezhi", "rose", "mark")
 ;;=> [" something and " "A" "Camel" "Name "]
 ```
 
+</details>
+
 <br>[⬆ Back to top](#contents)
 
 ### String substring
@@ -767,6 +911,9 @@ String.join(", ", "jack", "biezhi", "rose", "mark")
 "biezhi".substring(0, 3);
 "biezhi".substring(0, 6);
 ```
+
+<details>
+<summary>Clojure</summary>
 
 ```clojure
 (subs "biezhi" 1)
@@ -778,6 +925,8 @@ String.join(", ", "jack", "biezhi", "rose", "mark")
 (subs "biezhi" 0 6)
 ;;=> "biezhi"
 ```
+
+</details>
 
 <br>[⬆ Back to top](#contents)
 
