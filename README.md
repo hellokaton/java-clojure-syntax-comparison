@@ -64,6 +64,7 @@
 * [`Anonymous function`](#anonymous-function)
 * [`With return value`](#with-return-value)
 * [`Higher-order Function`](#higher-order-function)
+* [`filter`](#filter)
 
 </details>
 
@@ -639,6 +640,36 @@ In Clojure, caller functions are high-order functions while callees don’t have
 (defn my-convert [str] (Integer. str))
 (my-convert "123")
 ;;=> 123
+```
+
+</details>
+
+<br>[⬆ Back to top](#contents)
+
+### filter
+
+```java
+long count = IntStream.of(3, 5, 10, 2, 29, 1, 24, 13)
+                      .filter(i -> i < 10)
+                      .count();
+```
+
+The `filter` function is a commonly-used `higher-order functions`. It takes a function as an argument. The `filter` function works as its name implies. It filters out values in a sequence that don’t meet the given condition. To perform this filtering, `filter` takes a function and a sequence for its arguments. The function given to the `filter` must return a truthy value, and is called a predicate function.
+
+The syntax is: `(filter pred coll)`
+
+<details>
+<summary>Clojure</summary>
+
+```clojure
+(filter #(< % 10) [3 5 10 2 29 1 24 13])
+;;=> (3 5 2 1)
+
+(count (filter #(< % 10) [3 5 10 2 29 1 24 13]))
+;;=> 4
+
+(filter odd? (range 10))
+;;=> (1 3 5 7 9)
 ```
 
 </details>
