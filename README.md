@@ -213,10 +213,10 @@ String name = "biezhi";
 int age     = 2333;
 ```
 
-In fact, variables cannot be defined in `clojure`. These values ​​are immutable, like in Java `final`.
-
 <details>
 <summary>Clojure</summary>
+
+In fact, variables cannot be defined in `clojure`. These values ​​are immutable, like in Java `final`.
 
 ```clojure
 (def name "biezhi")
@@ -240,11 +240,11 @@ user/my-number
 ;;=> 234
 ```
 
-</details>
-
 In other languages, a variable assignment looks like `var myvar = "something"`, `@myvar = "something"`, or `String myVar = "something"`.
 
 Clojure does things in a different way. First, Clojure doesn’t call it a variable assignment. It is a *var binding*, and this idea is a bit different from assignment in other languages.
+
+</details>
 
 <br>[⬆ Back to top](#contents)
 
@@ -261,10 +261,10 @@ list.add("c");
 List<String> list = Arrays.asList("a", "b", "c");
 ```
 
-A list uses parentheses as its surrounding delimiters, and so an empty list would look like `()`, whereas a list with three elements could look like `("a" "b" "c")`.
-
 <details>
 <summary>Clojure</summary>
+
+A list uses parentheses as its surrounding delimiters, and so an empty list would look like `()`, whereas a list with three elements could look like `("a" "b" "c")`.
 
 ```clojure
 (def my-list (list "a" "b" "c"))
@@ -278,9 +278,9 @@ A list uses parentheses as its surrounding delimiters, and so an empty list woul
 (def my-list '("a" "b" "c"))
 ```
 
-</details>
-
 One unique thing about lists is that the first element is always evaluated as a function call, with the remaining elements as arguments. So, defining a list just using `()` will cause an error.
+
+</details>
 
 <br>[⬆ Back to top](#contents)
 
@@ -620,6 +620,9 @@ public Function<String, Integer> myConvert(){
 }
 ```
 
+<details>
+<summary>Clojure</summary>
+
 A higher-order function is:
 
 - a function that takes one or more functions as arguments
@@ -628,9 +631,6 @@ A higher-order function is:
 In other languages, this feature may have another name. For example, Ruby names it block for a callee function, although the caller doesn’t have specific name.
 
 In Clojure, caller functions are high-order functions while callees don’t have specific names. Some well known higher-order functions are `map`, `reduce`, `remove`, `filter`, and `iterate`. 
-
-<details>
-<summary>Clojure</summary>
 
 ```clojure
 (defn on-consumer [fn] (fn "let's go"))
@@ -654,12 +654,12 @@ long count = IntStream.of(3, 5, 10, 2, 29, 1, 24, 13)
                       .count();
 ```
 
+<details>
+<summary>Clojure</summary>
+
 The `filter` function is a commonly-used `higher-order functions`. It takes a function as an argument. The `filter` function works as its name implies. It filters out values in a sequence that don’t meet the given condition. To perform this filtering, `filter` takes a function and a sequence for its arguments. The function given to the `filter` must return a truthy value, and is called a predicate function.
 
 The syntax is: `(filter pred coll)`
-
-<details>
-<summary>Clojure</summary>
 
 ```clojure
 (filter #(< % 10) [3 5 10 2 29 1 24 13])
@@ -689,6 +689,9 @@ if (age > 18) {
 }
 ```
 
+<details>
+<summary>Clojure</summary>
+
 “If it is a good weather, I will go to a park; otherwise, I’ll go to a cafe.” This is called “if-branching” in the programming world. Since the if-branching uses simple conditionals, it is frequently used to divide into two states: true or false.
 
 In Clojure, `if` is a special form. The syntax is:
@@ -697,17 +700,12 @@ In Clojure, `if` is a special form. The syntax is:
 (if test then else?) or (if test then)
 ```
 
-<details>
-<summary>Clojure</summary>
-
 ```clojure
 (def age 14)
 (if (> age 18)
   (println "You have grown up, don't be like a child again.")
   (println "Let's learn the cat call together, say 'miao miao miao'."))
 ```
-
-</details>
 
 In addition, Clojure has a unique way of using the `if` conditional with the `let` binding. It is `if-let` macro, which is useful when we want to use the result of *test*.
 
@@ -716,9 +714,6 @@ The syntax is:
 ```clojure
 (if-let bindings then) or (if-let bindings then else & oldform)
 ```
-
-<details>
-<summary>Clojure</summary>
 
 ```clojure
 (defn weather-is-good?
@@ -735,6 +730,8 @@ The syntax is:
 ```
 
 </details>
+
+---
 
 ```java
 int temp = 10;
@@ -768,14 +765,9 @@ if (temp > 65) {
 ;;=> "I'll curl up in my bed."
 ```
 
-</details>
-
 Clojure has `condp` macro also. The usage is similar to `cond`, but it takes a part of test right after the condp.
 
 The syntax is: `(condp pred expr & clauses)`
-
-<details>
-<summary>Clojure</summary>
 
 ```clojure
 (defn what-to-do-p
@@ -796,6 +788,8 @@ The syntax is: `(condp pred expr & clauses)`
 ```
 
 </details>
+
+<details>
 
 <br>[⬆ Back to top](#contents)
 
@@ -818,6 +812,10 @@ switch(color) {
 <details>
 <summary>Clojure</summary>
 
+The `case` macro is a similar conditional to `cond/condp`. It branches to multiple clauses. The difference is that `case` doesn’t evaluate branching expressions. In `case`, it should be a constant. What we can do with `case` looks like `map (data structure)`.
+
+The syntax is: `(case e & clauses)`
+
 ```clojure
 (case 3
   3 "red"
@@ -825,6 +823,24 @@ switch(color) {
   1 "pink"
   "#000")
 ;;=> "red"
+
+(defn cases-to-do [temp]
+  (case temp
+        :65-80 "I'll enjoy walking at a park."
+        :45-64 "I'll spend time at a cafe."
+        "I'll curl up in my bed"))
+
+(cases-to-do :65-80)
+;;=> "I'll enjoy walking at a park."
+
+(my-cases :45-64)
+;;=> "I'll spend time at a cafe."
+
+(my-cases :other)
+;;=> "I'll curl up in my bed"
+
+(my-cases :30) ; hash-map can't take a key that doesn't match anything
+;;=> nil
 ```
 
 </details>
@@ -899,12 +915,105 @@ for (int i=0; i<10; i++){
 <details>
 <summary>Clojure</summary>
 
-```clojure
-(doseq [i (range 10)] 
-  (println (str "i =" i)))
+The *for loop* is a common concept in computer languages. When we want to apply the same logic (operations) to each element of a given array (vector or list in Clojure), we apply the idea of a *for loop* to that. In general, this involves incrementing (or decrementing) an index and performing a similar function on each element. However, the way to implement a for loop varies from language to language. Some use an index variable explicitly. Others use an iterator. Some use neither. Clojure takes a very different approach. 
 
+Clojure’s `for` is categorized as a sequence operator, like `map`(core function) or `reduce`. More importantly, in Clojure, `for` is used for *list comprehension*, which means it creates a list from a given `list`. 
+
+The syntax of the `for` macro is: `(for [binding-form coll-expr filter-expr?] expr)`
+
+```clojure
 (for [i (range 10)] 
   (do (println (str "i =" i))))
+
+(for [w ["LOVe" "coding" "hEllo" "worLD!"]]
+           (clojure.string/capitalize w))
+; like let, *for* takes binding-form
+;;=> ("Love" "Coding" "Hello" "World!")
+
+; we can get the same result using the *map* core function
+(map clojure.string/capitalize ["LOVe" "coding" "hEllo" "worLD!"])
+;;=> ("Love" "Coding" "Hello" "World!")
+
+; include only when length of the word exceeds 5
+(for [w ["LOVe" "coding" "hEllo" "worLD!"] :when (> (count w) 5)]
+           (clojure.string/capitalize w))
+;;=> ("Coding" "World!")
+
+; using let binding
+(for [w ["LOVe" "coding" "hEllo" "worLD!"] :let [length (count w)]]
+           (str (clojure.string/capitalize w) ": " length))
+;;=> ("Love: 4" "Coding: 6" "Hello: 5" "World!: 6")
+
+; when the input consists of multiple vectors
+(for [x ["a" "b" "c"]
+      y ["a" "b" "c"]
+      z ["a" "b" "c"]]
+     (str x y z))
+;;=> ("aaa" "aab" "aac" "aba" "abb" "abc" "aca" "acb" "acc" "baa" "bab" "bac" "bba" "bbb" "bbc" "bca" "bcb" "bcc" "caa" "cab" "cac" "cba" "cbb" "cbc" "cca" "ccb" "ccc")
+```
+
+</details>
+
+```java
+String someJoin(String[] coll, String result) {
+    if (coll.length == 1) {
+        return result + coll[0];
+    }
+    StringBuilder sbuf = new StringBuilder();
+    for (String str : coll) {
+        sbuf.append(str).append(", ");
+    }
+    return sbuf.substring(0, sbuf.length() - 2);
+}
+```
+
+<details>
+<summary>Clojure</summary>
+
+While `for` is somewhat like a loop, `recur` is a real loop in Clojure. `recur` represents such a remarkable idea that we might even say, “this *is* Clojure.”
+
+If you have a programming background, you may have heard of tail *recursion*, which is a major feature of functional languages. This `recur` special form is the one that implements *tail recursion*. As the words “*tail recursion*” indicate, recur must be called in the tail position. In other words, `recur` must be the last thing to be evaluated. 
+
+The syntax of the recur macro is: `(recur exprs*)`
+
+```clojure
+(defn some-join [coll result]
+        (if (= 1 (count coll)) (str result (first coll))
+          (recur (rest coll) (str result (first coll) ", "))))
+
+(some-join ["hello" "world" "love" "coding"] "Words: ")
+;;=> "Words: hello, world, love, coding"
+
+; when we want to do something just before the recur
+; we can use *do*
+(defn some-join [coll result]
+      (if (= 1 (count coll)) (str result (first coll))
+        (do
+          (println result)
+          (recur (rest coll) (str result (first coll) ", ")))))
+
+(some-join ["hello" "world" "love" "coding"] "Words: ")
+;;=> Words:
+;;=> Words: hello,
+;;=> Words: hello, world,
+;;=> "Words: hello, world, love, coding"
+
+; however, just for printing out the process, let binding works
+(defn some-join [coll result]
+  (let [_ (println result)]
+    (if (= 1 (count coll)) (str result (first coll))
+      (recur (rest coll) (str result (first coll) ", ")))))
+
+(some-join ["hello" "world" "love" "coding"] "Words: ")
+;;=> Words:
+;;=> Words: hello,
+;;=> Words: hello, world,
+;;=> Words: hello, world, love,
+;;=> "Words: hello, world, love, coding"
+
+; we attempted the same thing as clojure.string/join function does
+(str "Words: " (clojure.string/join ", " ["hello" "world" "love" "coding"]))
+;;=> "Words: hello, world, love, coding"
 ```
 
 </details>
@@ -960,12 +1069,36 @@ System.out.println(age.toString());
 String a = "hello " + "world " + 2333;
 ```
 
+`str` is a function that turns its arguments into strings.
+
 <details>
 <summary>Clojure</summary>
 
 ```clojure
 (str "hello " "world " 2333)
 ;;=> "hello world 2333"
+
+(str :a-keyword)
+;;=> ":a-keyword"
+
+(str false)
+;;=> "false"
+
+(map str (range 10))
+;;=> ("0" "1" "2" "3" "4" "5" "6" "7" "8" "9")
+```
+
+When `str` is given multiple arguments, then it will concatenate them all into one big string.
+
+```clojure
+(str "I need " 5 " of these")
+;;=> "I need 5 of these"
+
+(str "In "
+     (rand-nth ["summer" "winter"])
+     " I like to go "
+     (rand-nth ["swimming" "running"]))
+;;=> "In summer I like to go swimming"
 ```
 
 </details>
