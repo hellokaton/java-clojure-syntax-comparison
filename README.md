@@ -5,7 +5,7 @@
 > Comparison of some code snippets in the Java and Clojure.
 
 - Java Version: `1.8.0_101`
-- Clojure Version: `1.9`
+- Clojure Version: `1.9.0`
 
 ## Contents
 
@@ -63,6 +63,7 @@
 * [`Function with parameters`](#function-with-parameters)
 * [`Anonymous function`](#anonymous-function)
 * [`With return value`](#with-return-value)
+* [`Higher-order Function`](#higher-order-function)
 
 </details>
 
@@ -600,6 +601,44 @@ String sayHello(String name) {
 
 ```clojure
 (defn say-hello [name] (str "hello " name))
+```
+
+</details>
+
+<br>[⬆ Back to top](#contents)
+
+### Higher-order function
+
+```java
+public void onConsumer(Consumer<String> consumer) {
+    consumer.accept("let's go");
+}
+   
+public Function<String, Integer> myConvert(){
+    return Integer::parseInt;
+}
+```
+
+A higher-order function is:
+
+- a function that takes one or more functions as arguments
+- or a function that returns a function
+
+In other languages, this feature may have another name. For example, Ruby names it block for a callee function, although the caller doesn’t have specific name.
+
+In Clojure, caller functions are high-order functions while callees don’t have specific names. Some well known higher-order functions are `map`, `reduce`, `remove`, `filter`, and `iterate`. 
+
+<details>
+<summary>Clojure</summary>
+
+```clojure
+(defn on-consumer [fn] (fn "let's go"))
+(on-consumer str)
+;;=> "let's go"
+
+(defn my-convert [str] (Integer. str))
+(my-convert "123")
+;;=> 123
 ```
 
 </details>
