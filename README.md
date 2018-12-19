@@ -789,8 +789,6 @@ The syntax is: `(condp pred expr & clauses)`
 
 </details>
 
-<details>
-
 <br>[⬆ Back to top](#contents)
 
 ### Switch
@@ -839,7 +837,8 @@ The syntax is: `(case e & clauses)`
 (my-cases :other)
 ;;=> "I'll curl up in my bed"
 
-(my-cases :30) ; hash-map can't take a key that doesn't match anything
+; hash-map can't take a key that doesn't match anything
+(my-cases :30) 
 ;;=> nil
 ```
 
