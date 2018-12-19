@@ -689,6 +689,14 @@ if (age > 18) {
 }
 ```
 
+“If it is a good weather, I will go to a park; otherwise, I’ll go to a cafe.” This is called “if-branching” in the programming world. Since the if-branching uses simple conditionals, it is frequently used to divide into two states: true or false.
+
+In Clojure, `if` is a special form. The syntax is:
+
+```clojure
+(if test then else?) or (if test then)
+```
+
 <details>
 <summary>Clojure</summary>
 
@@ -697,6 +705,94 @@ if (age > 18) {
 (if (> age 18)
   (println "You have grown up, don't be like a child again.")
   (println "Let's learn the cat call together, say 'miao miao miao'."))
+```
+
+</details>
+
+In addition, Clojure has a unique way of using the `if` conditional with the `let` binding. It is `if-let` macro, which is useful when we want to use the result of *test*.
+
+The syntax is:
+
+```clojure
+(if-let bindings then) or (if-let bindings then else & oldform)
+```
+
+<details>
+<summary>Clojure</summary>
+
+```clojure
+(defn weather-is-good?
+        [weather]
+        (if-let [actual (= :good weather)]
+                (str "The weather is good? " actual)
+                "The weather is at least not good."))
+
+(weather-is-good? :good)
+;;=> "The weather is good? true"
+
+(weather-is-good? :bad)
+;;=> "The weather is at least not good."
+```
+
+</details>
+
+```java
+int temp = 10;
+if (temp > 65) {
+    System.out.println("I'll enjoy walking at a park.");
+} else if (temp > 45) {
+    System.out.println("I'll spend time at a cafe.");
+} else {
+    System.out.println("I'll curl up in my bed.");
+}
+```
+
+<details>
+<summary>Clojure</summary>
+
+```clojure
+(defn what-to-do
+        [temp]
+        (cond
+         (> temp 65) "I'll enjoy walking at a park."
+         (> temp 45) "I'll spend time at a cafe."
+         :else "I'll curl up in my bed."))
+
+(what-to-do 70)
+;;=> "I'll enjoy walking at a park."
+
+(what-to-do 50)
+;;=> "I'll spend time at a cafe."
+
+(what-to-do 30)
+;;=> "I'll curl up in my bed."
+```
+
+</details>
+
+Clojure has `condp` macro also. The usage is similar to `cond`, but it takes a part of test right after the condp.
+
+The syntax is: `(condp pred expr & clauses)`
+
+<details>
+<summary>Clojure</summary>
+
+```clojure
+(defn what-to-do-p
+        [temp]
+        (condp < temp
+               65 "I'll enjoy walking at a park."
+               45 "I'll spend time at a cafe."
+               "I'll curl up in my bed"))
+
+(what-to-do-p 70)
+;;=> "I'll enjoy walking at a park."
+
+(what-to-do-p 50)
+;;=> "I'll spend time at a cafe."
+
+(what-to-do-p 30)
+;;=> "I'll curl up in my bed."
 ```
 
 </details>
